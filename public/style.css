@@ -1,0 +1,14 @@
+.post-card{
+    border: 2px solid black;
+    margin: 0.5rem;
+    padding: 0.5rem;
+}
+.postTitleDiv{
+    font-weight: bold;
+    font-size: 1.4rem;
+    display: inline;
+}
+.fontIcons{
+    display: inline;
+    float: right;
+}

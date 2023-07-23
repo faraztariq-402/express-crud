@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-rnf1NZhpR4uWK45CUM5Cz8yxO6G6a5g2wWV2uzvjMO50J7ijtSCbHKEF4hWfU7SN9zTxAbE2HfQqAEMbh5B5g==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body id="mybody">
+    <h1>Express Crud</h1>
+    <form>
+    <label for="postTitle">Post Title</label><br>
+    <input id="postTitle" placeholder="Post Title"><br>
+    <label for="postText">Post Text</label><br>
+    <input id="postText" placeholder="Post Text">
+    <button type="submit" id="createPost">Post</button></form>
+    <br><br>
+    <div id="result"></div>
+
+    <div id="allPosts"></div>
+    
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js" integrity="sha512-WZ7TCoBEb6qW2+z9+e/6OZ0vzTDv7wGzkxS2O8hEXRjnxYYBhMBr9xoaAYksF+HHhMDFQhDbkC4v9E1y19//A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.js"></script>
+
+    <script type="module" src="./app.mjs"></script>
+</body>
+</html>
