@@ -24,7 +24,7 @@ axios.post(`/api/v1/post`, {
 })
 .then(function(response){
 console.log(response.data)
-result.innerHTML = response.data
+alert(response.data)
 // console.log("post created")
 getAllPosts()   
  postTitle.value = ''
@@ -39,39 +39,6 @@ postText.value = ''
    
 })
  })
-
-//  Swal.fire({
-//     title: 'Submit your Github username',
-//     input: 'text',
-//     inputAttributes: {
-//       autocapitalize: 'off'
-//     },
-//     showCancelButton: true,
-//     confirmButtonText: 'Look up',
-//     showLoaderOnConfirm: true,
-//     preConfirm: (login) => {
-//       return fetch(`//api.github.com/users/${login}`)
-//         .then(response => {
-//           if (!response.ok) {
-//             throw new Error(response.statusText)
-//           }
-//           return response.json()
-//         })
-//         .catch(error => {
-//           Swal.showValidationMessage(
-//             `Request failed: ${error}`
-//           )
-//         })
-//     },
-//     allowOutsideClick: () => !Swal.isLoading()
-//   }).then((result) => {
-//     if (result.isConfirmed) {
-//       Swal.fire({
-//         title: `${result.value.login}'s avatar`,
-//         imageUrl: result.value.avatar_url
-//       })
-//     }
-//   })
 
 let getAllPosts = () => {
     axios.get(`/api/v1/posts`)
@@ -101,7 +68,12 @@ let getAllPosts = () => {
             axios.delete(`/api/v1/post/${post.id}`)
               .then(function (response) {
                 // Remove the postCard from the DOM after successful deletion
-                postCard.remove();
+               
+               postCard.remove();
+               
+               
+               alert("Post Deleted") 
+                
               })
               .catch(function (error) {
                 console.log("Error in deleting the post");
@@ -110,23 +82,39 @@ let getAllPosts = () => {
   
           edit.addEventListener('click', (e) => {
             e.preventDefault();
-            // Assuming you have a form to get the updated title and text
-            const updatedTitle = prompt("Enter updated title:", post.title);
-            const updatedText = prompt("Enter updated text:", post.text);
           
-            // Make the put request for the specific post ID with updated data
-            axios.put(`/api/v1/post/${post.id}`, {
-              title: updatedTitle,
-              text: updatedText
-            })
-              .then(function (response) {
-                postCard.contentEditable = true;
-                postTitleDiv.innerHTML = updatedTitle;
-                postTextDiv.innerHTML = updatedText;
-              })
-              .catch(function (error) {
-                console.log("Error in editing the post");
-              });
+            // Show SweetAlert popup for editing post
+            Swal.fire({
+              title: 'Edit Post',
+              html: `
+              <label for="updatedTitle" class="swal2-label">Post Title:</label><br><input type="text" id="updatedTitle" value="${post.title}" class="swal2-input" placeholder="Title" required><br>
+              <label for="updatedText" class="swal2-label">Post Text:</label> <br> <input type="text" id="updatedText" value= "${post.text}"  class="swal2-input" ></input>`,
+              confirmButtonText: 'Edit',
+              focusConfirm: false,
+              preConfirm: () => {
+                const updatedTitle = Swal.getPopup().querySelector('#updatedTitle').value;
+                const updatedText = Swal.getPopup().querySelector('#updatedText').value;
+                return { updatedTitle, updatedText };
+              }
+            }).then((result) => {
+              if (result.isConfirmed) {
+                const { updatedTitle, updatedText } = result.value;
+          
+                // Make the PUT request for the specific post ID with updated data
+                axios.put(`/api/v1/post/${post.id}`, {
+                  title: updatedTitle,
+                  text: updatedText
+                })
+                  .then(function (response) {
+                    postCard.contentEditable = true;
+                    postTitleDiv.innerHTML = updatedTitle;
+                    postTextDiv.innerHTML = updatedText;
+                  })
+                  .catch(function (error) {
+                    console.log("Error in editing the post");
+                  });
+              }
+            });
           });
   
           const postTextDiv = document.createElement('p');

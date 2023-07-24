@@ -1,14 +1,58 @@
 .post-card{
-    border: 2px solid black;
+    border: 3px solid black;
     margin: 0.5rem;
-    padding: 0.5rem;
+    padding: 0.8rem;
+    border-radius: 0.5rem;
+}
+body{
+    background-color: rgb(43, 40, 40);
+    color: white;
+}
+label{
+    font-size: 1.4rem;
+}
+.myLabels{
+    float: left;
+}
+button{
+    /* margin-top: 0.4rem; */
+    height: 1.9rem;
+    border-radius: 0.4rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    width: 6rem;
+    /* padding: 0.8rem; */
+    margin-left: 1rem;
+    background-color: rgb(54, 44, 44);
+    color: white;
 }
 .postTitleDiv{
     font-weight: bold;
-    font-size: 1.4rem;
+    font-size: 2rem;
     display: inline;
+}
+.postTextDiv{
+    font-size: 1.3rem;
+}
+input{
+    height: 1.5rem;
+    border-radius: 0.4rem;
+    font-weight: bold;
+    font-size: 1rem;
+}
+form{
+    margin: 0.5rem;
+    padding: 0.4rem;
 }
 .fontIcons{
     display: inline;
     float: right;
+}
+.completeContainer{
+    width: 55vw;
+    margin: auto;
+}
+h1{
+    display: flex;
+    justify-content: center;
 }
