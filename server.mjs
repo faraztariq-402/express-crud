@@ -21,7 +21,7 @@ app.use("/api/v2", apiv2Router)
 
 app.use(express.static(path.join(__dirname, 'public')))
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
     console.log(`Example server listening on port ${PORT}`)
 })
